@@ -12,6 +12,7 @@
 </table>
 
 <button data-bind="click: save">Save</button>
+<button data-bind="click: download">Download as CSV</button>
 <script type='text/javascript' src='../js/jquery-2.1.4.min.js'></script>
 <script type='text/javascript' src='../js/knockout-3.3.0.js'></script>
 <script type="text/javascript">
@@ -25,8 +26,24 @@
 	function viewModel() {
 	    var self = this;   
 	    self.images = ko.observableArray([]);
-	    self.save = function() {
-	        console.log(self.caption);
+	    self.save = function(){
+	    	
+	    }
+	    self.download = function() {
+	       	var csvRows = [['source','caption']];
+			images = self.images();
+	    	for(var i=1; i < images.length; i++){
+	    	    csvRows.push([images[i].source,images[i].caption]);
+	    	}
+
+	    	var csvString = csvRows.join("%0A");
+	    	var a         = document.createElement('a');
+	    	a.href        = 'data:attachment/csv,' + csvString;
+	    	a.target      = '_blank';
+	    	a.download    = 'myFile.csv';
+
+	    	//document.body.appendChild(a);
+	    	a.click();
 	    }
 	    var fileExt = {};
 	    fileExt[0]=".png";
