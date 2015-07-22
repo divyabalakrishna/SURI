@@ -11,7 +11,7 @@
   <body>
   <div class="login-wrap">
   <h2>Truthing Interface</h2>
-  <form action="LoginServlet">
+  <form action="../../LoginServlet">
   <div class="form">
     <input type="text" placeholder="Username" name="un" />
     <input type="password" placeholder="Password" name="pw" />
